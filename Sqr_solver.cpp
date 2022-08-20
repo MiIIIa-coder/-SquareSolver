@@ -2,50 +2,87 @@
 #include <stdio.h>
 #include <math.h>
 
+bool comparing(double x);  // сравнение с 0, True <=> равен
+void input(double *a, double *b, double *c);  //ввод коэффициентов
+void not_sqr(double *b, double *c); // если не квадратное
+void sqr_solve(double *a, double *b, double *c); //решение квадратного
+
 int main()
 {
-    float a, b, c;
-    double D;
-    
-    /* Р’РІРѕРґ a, b, c */
-    printf("Р’РІРµРґРёС‚Рµ РєРѕСЌС„С„. Р°\n");
-    if (!(scanf("%f", &a))) {
-        printf("Р’РІРµРґС‘РЅ РЅРµРїСЂР°РІРёР»СЊРЅС‹Р№ С„РѕСЂРјР°С‚ РґР°РЅРЅС‹С…\n");
-        return 1;
-    }
-    printf("Р’РІРµРґРёС‚Рµ РєРѕСЌС„С„. b\n");
-    if (!(scanf("%f", &b))) {
-        printf("Р’РІРµРґС‘РЅ РЅРµРїСЂР°РІРёР»СЊРЅС‹Р№ С„РѕСЂРјР°С‚ РґР°РЅРЅС‹С…\n");
-        return 1;
-    }
-    printf("Р’РІРµРґРёС‚Рµ РєРѕСЌС„С„. c\n");
-    if (!(scanf("%f", &c))) {
-        printf("Р’РІРµРґС‘РЅ РЅРµРїСЂР°РІРёР»СЊРЅС‹Р№ С„РѕСЂРјР°С‚ РґР°РЅРЅС‹С…\n");
-        return 1;
-    }
-    
-    /* СЃР»СѓС‡Р°Рё */
-    if (a >= 0 && a <= 0 && b >= 0 && b <= 0 && c >= 0 && c <= 0) {
-        printf("РљРѕСЂРЅРµРј СѓСЂ-СЏ СЏРІР»СЏРµС‚СЃСЏ Р»СЋР±РѕРµ С‡РёСЃР»Рѕ");
-        return 0;
-    }
-    else if (a >= 0 && a <= 0 && (b > 0 || b < 0)) { /* Р»РёРЅРµР№РЅС‹Р№ СЃР»СѓС‡Р°Р№ */
-        printf("РљРѕСЂРµРЅСЊ СѓСЂ-СЏ = %.5f\n", -c/b);
-        return 0;
-    }
-    else if (a >= 0 && a <= 0 && b >= 0 && b <= 0) {
-        printf("РљРѕСЂРЅРµР№ РЅРµС‚\n");
+    double a = 0, b = 0, c = 0;
+
+    input(&a, &b, &c);
+
+    if (comparing(a)) {  // если не квадратное
+        not_sqr(&b, &c);
         return 0;
     }
 
-    D = (double)pow(b, 2) - 4*a*c; /* РґРёСЃРєСЂРёРјРёРЅР°РЅС‚ */
-    if (D > 0)
-        printf("x1 = %.4f, x2 = %.4f\n", ((-b + (double)sqrt(D))/(2*a)), ((-b - (double)sqrt(D))/(2*a)));
-    else if (D >= 0 && D <= 0)
-        printf("x1 = x2 = %.4f\n", (-b/(2*a)));
-    else
-        printf("РљРѕСЂРЅРµР№ РЅРµС‚\n");
+    sqr_solve(&a, &b, &c); //решение квадратного
 
     return 0;
 }
+
+
+void input(double *a, double *b, double *c)
+{
+    int ch_input = 0;
+
+    printf("Введите коэффициенты а, b, c\n");
+    ch_input = scanf("%lg %lg %lg", a, b, c);
+    while (ch_input != 3) {
+        printf("Введён неправильный формат данных\n");
+        fflush(stdin);  //очищает поток ввода
+        ch_input = scanf("%lg %lg %lg", a, b, c);
+    }
+}
+
+
+bool comparing(double x)
+{
+    if (fabs(x - 0.0) <= pow(10, -5))
+        return true;
+    else
+        return false;
+}
+
+void not_sqr(double *b, double *c)
+{
+    if (comparing(*b) && comparing(*c)) // все нули
+        printf("Корнем ур-я является любое число");
+    else if (!(comparing(*b)))         // линейный случай
+        printf("Корень ур-я = %.5lg\n", -(*c)/(*b));
+    else if (comparing(*b))            // const = 0, где const != 0
+        printf("Корней нет\n");
+}
+
+
+void sqr_solve(double *a, double *b, double *c)
+{
+    double D = 0, sqrt_D = 0, a_2 = 0;
+
+    D = (*b)*(*b) - 4.0*(*a)*(*c); // дискриминант
+    a_2 = 2.0 * (*a);
+
+    if (D > 0) {
+        sqrt_D = sqrt(D);
+        printf("x1 = %.4lg, x2 = %.4lg\n", ((-(*b) + sqrt_D)/(a_2)), ((-(*b) - sqrt_D)/(a_2)));
+    }
+    else if (comparing(D))
+        printf("x1 = x2 = %.4lg\n", (-(*b)/(a_2)));
+    else
+        printf("Корней нет\n");
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
