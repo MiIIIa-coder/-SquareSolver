@@ -4,8 +4,12 @@
 
 bool comparing(double x);  /* сравнение с 0, True <=> равен */
 void input(double *a, double *b, double *c);  /* ввод коэффициентов */
-void not_sqr(double *b, double *c); /* если не квадратное */
-void sqr_solve(double *a, double *b, double *c); /* решение квадратного */
+void line(double b, double c); /* если не квадратное */
+void sqr_solve(double a, double b, double c); /* решение квадратного */
+void output(int c); /* вывод ответа */
+
+double x1 = 0, x2 = 0;
+int count_ans = -1;
 
 int main()
 {
@@ -13,12 +17,12 @@ int main()
 
     input(&a, &b, &c);
 
-    if (comparing(a)) {  // если не квадратное
-        not_sqr(&b, &c);
-        return 0;
-    }
+    if (comparing(a))
+        line(b, c);         // если не квадратное
+    else
+        sqr_solve(a, b, c); //решение квадратного
 
-    sqr_solve(&a, &b, &c); //решение квадратного
+    output(count_ans);
 
     return 0;
 }
@@ -46,40 +50,62 @@ bool comparing(double x)
         return false;
 }
 
-void not_sqr(double *b, double *c)
+
+void line(double b, double c)
 {
-    if (comparing(*b) && comparing(*c)) // все нули
-        printf("Корнем ур-я является любое число");
-    else if (!(comparing(*b)))         // линейный случай
-        printf("Корень ур-я = %.5lg\n", -(*c)/(*b));
-    else if (comparing(*b))            // const = 0, где const != 0
-        printf("Корней нет\n");
+    extern double x1;
+    extern int count_ans;
+
+    if (!(comparing(b))) {         // линейный случай
+        x1 = -c/b;
+        count_ans = 1;
+    }
+    else if (!(comparing(c)))      // const = 0, где const != 0
+        count_ans = 0;
 }
 
 
-void sqr_solve(double *a, double *b, double *c)
+void sqr_solve(double a, double b, double c)
 {
+    extern double x1, x2;
+    extern int count_ans;
     double D = 0, sqrt_D = 0, a_2 = 0;
 
-    D = (*b)*(*b) - 4.0*(*a)*(*c); // дискриминант
-    a_2 = 2.0 * (*a);
+    D = b*b - 4.0*a*c; // дискриминант
+    a_2 = 2.0 * a;
 
     if (D > 0) {
         sqrt_D = sqrt(D);
-        printf("x1 = %.4lg, x2 = %.4lg\n", ((-(*b) + sqrt_D)/(a_2)), ((-(*b) - sqrt_D)/(a_2)));
+        x1 = (-b + sqrt_D)/a_2;
+        x2 = (-b - sqrt_D)/a_2;
+        count_ans = 2;
     }
-    else if (comparing(D))
-        printf("x1 = x2 = %.4lg\n", (-(*b)/(a_2)));
+    else if (comparing(D)) {
+        x1 = -b/a_2;
+        count_ans = 1;
+    }
     else
-        printf("Корней нет\n");
+        count_ans = 0;
 }
 
 
+void output(int c)
+{
+    extern double x1, x2;
 
-
-
-
-
-
-
-
+    switch (c)
+    {
+        case 0:
+            printf("Корней нет\n");
+            break;
+        case 1:
+            printf("x1 = %.4lg\n", x1); /*  выводит корень */
+            break;
+        case 2:
+            printf("x1 = %.4lg, x2 = %.4lg\n", x1, x2); /*  выводит корни */
+            break;
+        default:
+            printf("Корнем ур-я является любое число");
+            break;
+    }
+}
