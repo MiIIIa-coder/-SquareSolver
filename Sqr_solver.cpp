@@ -2,10 +2,10 @@
 #include <stdio.h>
 #include <math.h>
 
-bool comparing(double x);  // сравнение с 0, True <=> равен
-void input(double *a, double *b, double *c);  //ввод коэффициентов
-void not_sqr(double *b, double *c); // если не квадратное
-void sqr_solve(double *a, double *b, double *c); //решение квадратного
+bool comparing(double x);  /* Г±Г°Г ГўГ­ГҐГ­ГЁГҐ Г± 0, True <=> Г°Г ГўГҐГ­ */
+void input(double *a, double *b, double *c);  /* ГўГўГ®Г¤ ГЄГ®ГЅГґГґГЁГ¶ГЁГҐГ­ГІГ®Гў */
+void not_sqr(double *b, double *c); /* ГҐГ±Г«ГЁ Г­ГҐ ГЄГўГ Г¤Г°Г ГІГ­Г®ГҐ */
+void sqr_solve(double *a, double *b, double *c); /* Г°ГҐГёГҐГ­ГЁГҐ ГЄГўГ Г¤Г°Г ГІГ­Г®ГЈГ® */
 
 int main()
 {
@@ -13,12 +13,12 @@ int main()
 
     input(&a, &b, &c);
 
-    if (comparing(a)) {  // если не квадратное
+    if (comparing(a)) {  // ГҐГ±Г«ГЁ Г­ГҐ ГЄГўГ Г¤Г°Г ГІГ­Г®ГҐ
         not_sqr(&b, &c);
         return 0;
     }
 
-    sqr_solve(&a, &b, &c); //решение квадратного
+    sqr_solve(&a, &b, &c); //Г°ГҐГёГҐГ­ГЁГҐ ГЄГўГ Г¤Г°Г ГІГ­Г®ГЈГ®
 
     return 0;
 }
@@ -28,11 +28,11 @@ void input(double *a, double *b, double *c)
 {
     int ch_input = 0;
 
-    printf("Введите коэффициенты а, b, c\n");
+    printf("Г‚ГўГҐГ¤ГЁГІГҐ ГЄГ®ГЅГґГґГЁГ¶ГЁГҐГ­ГІГ» Г , b, c\n");
     ch_input = scanf("%lg %lg %lg", a, b, c);
     while (ch_input != 3) {
-        printf("Введён неправильный формат данных\n");
-        fflush(stdin);  //очищает поток ввода
+        printf("Г‚ГўГҐГ¤ВёГ­ Г­ГҐГЇГ°Г ГўГЁГ«ГјГ­Г»Г© ГґГ®Г°Г¬Г ГІ Г¤Г Г­Г­Г»Гµ\n");
+        fflush(stdin);  //Г®Г·ГЁГ№Г ГҐГІ ГЇГ®ГІГ®ГЄ ГўГўГ®Г¤Г 
         ch_input = scanf("%lg %lg %lg", a, b, c);
     }
 }
@@ -48,12 +48,12 @@ bool comparing(double x)
 
 void not_sqr(double *b, double *c)
 {
-    if (comparing(*b) && comparing(*c)) // все нули
-        printf("Корнем ур-я является любое число");
-    else if (!(comparing(*b)))         // линейный случай
-        printf("Корень ур-я = %.5lg\n", -(*c)/(*b));
-    else if (comparing(*b))            // const = 0, где const != 0
-        printf("Корней нет\n");
+    if (comparing(*b) && comparing(*c)) // ГўГ±ГҐ Г­ГіГ«ГЁ
+        printf("ГЉГ®Г°Г­ГҐГ¬ ГіГ°-Гї ГїГўГ«ГїГҐГІГ±Гї Г«ГѕГЎГ®ГҐ Г·ГЁГ±Г«Г®");
+    else if (!(comparing(*b)))         // Г«ГЁГ­ГҐГ©Г­Г»Г© Г±Г«ГіГ·Г Г©
+        printf("ГЉГ®Г°ГҐГ­Гј ГіГ°-Гї = %.5lg\n", -(*c)/(*b));
+    else if (comparing(*b))            // const = 0, ГЈГ¤ГҐ const != 0
+        printf("ГЉГ®Г°Г­ГҐГ© Г­ГҐГІ\n");
 }
 
 
@@ -61,7 +61,7 @@ void sqr_solve(double *a, double *b, double *c)
 {
     double D = 0, sqrt_D = 0, a_2 = 0;
 
-    D = (*b)*(*b) - 4.0*(*a)*(*c); // дискриминант
+    D = (*b)*(*b) - 4.0*(*a)*(*c); // Г¤ГЁГ±ГЄГ°ГЁГ¬ГЁГ­Г Г­ГІ
     a_2 = 2.0 * (*a);
 
     if (D > 0) {
@@ -71,7 +71,7 @@ void sqr_solve(double *a, double *b, double *c)
     else if (comparing(D))
         printf("x1 = x2 = %.4lg\n", (-(*b)/(a_2)));
     else
-        printf("Корней нет\n");
+        printf("ГЉГ®Г°Г­ГҐГ© Г­ГҐГІ\n");
 }
 
 
