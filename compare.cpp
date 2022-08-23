@@ -1,9 +1,9 @@
 #include "sqr_solver.hpp"
 
-bool comparing(double comp_digit)
+bool is_null(double comp_digit)
 {
-    if (fabs(comp_digit - 0.0) <= 0.00001)
+    double small_compare_digit = 0.00001;
+    if (fabs(comp_digit - 0.0) <= small_compare_digit)
         return true;
-    else
-        return false;
+    return false;
 }
