@@ -9,7 +9,7 @@ void input(double *a, double *b, double *c, int *count_ans)
 
     int ch_input = 0;
 
-    printf("Введите коэффициенты а, b, c\n");
+    printf("Р’РІРµРґРёС‚Рµ РєРѕСЌС„С„РёС†РёРµРЅС‚С‹ Р°, b, c РґР»СЏ СѓСЂР°РІРЅРµРЅРёР№ РІРёРґР° a*x^2 + b*x + c = 0\n");
 
     ch_input = scanf("%lg %lg %lg", a, b, c);
 
@@ -30,19 +30,19 @@ void output(int *count_ans, double *x1, double *x2)
     switch (*count_ans)
     {
         case ZERO:
-            printf("Корней нет\n");
+            printf("ГЉГ®Г°Г­ГҐГ© Г­ГҐГІ\n");
             break;
         case ONE:
-            printf("x = %.4lg\n", *x1); /*  выводит корень */
+            printf("x = %.4lg\n", *x1); /*  ГўГ»ГўГ®Г¤ГЁГІ ГЄГ®Г°ГҐГ­Гј */
             break;
         case TWO:
-            printf("x1 = %.4lg, x2 = %.4lg\n", *x1, *x2); /*  выводит корни */
+            printf("x1 = %.4lg, x2 = %.4lg\n", *x1, *x2); /*  ГўГ»ГўГ®Г¤ГЁГІ ГЄГ®Г°Г­ГЁ */
             break;
         case INFINITY_:
-            printf("Корнем ур-я является любое число");
+            printf("ГЉГ®Г°Г­ГҐГ¬ ГіГ°-Гї ГїГўГ«ГїГҐГІГ±Гї Г«ГѕГЎГ®ГҐ Г·ГЁГ±Г«Г®");
             break;
         default:
-            printf("Введён неверный формат данных\n");
+            printf("Г‚ГўГҐГ¤ВёГ­ Г­ГҐГўГҐГ°Г­Г»Г© ГґГ®Г°Г¬Г ГІ Г¤Г Г­Г­Г»Гµ\n");
             break;
     }
 }
