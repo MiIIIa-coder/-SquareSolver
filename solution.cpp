@@ -5,13 +5,13 @@ void line(double b, double c, double *x1, int *count_ans)
     assert(x1 != NULL);
     assert(count_ans != 0);
 
-    if (comparing(b) && (comparing(c)))  //âñå íóëè
+    if (comparing(b) && (comparing(c)))  //Ð²ÑÐµ Ð½ÑƒÐ»Ð¸
         *count_ans = INFINITY_;
-    else if (!(comparing(b))) {         // ëèíåéíûé ñëó÷àé
+    else if (!(comparing(b))) {         // Ð»Ð¸Ð½ÐµÐ¹Ð½Ñ‹Ð¹ ÑÐ»ÑƒÑ‡Ð°Ð¹
         *x1 = -c/b;
         *count_ans = ONE;
     }
-    else if (!(comparing(c)))      // const = 0, ãäå const != 0
+    else if (!(comparing(c)))      // const = 0, Ð³Ð´Ðµ const != 0
         *count_ans = ZERO;
 }
 
@@ -50,7 +50,7 @@ void sqr_solve(double a, double b, double c, double *x1, double *x2, int *count_
 
     double D = 0, sqrt_D = 0, a_2 = 0;
 
-    D = b*b - 4*a*c; // äèñêðèìèíàíò
+    D = b*b - 4*a*c; // Ð´Ð¸ÑÐºÑ€Ð¸Ð¼Ð¸Ð½Ð°Ð½Ñ‚
     a_2 = 2 * a;
 
     if (D > 0) {
