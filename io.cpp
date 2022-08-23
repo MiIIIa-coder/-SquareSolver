@@ -11,7 +11,7 @@ void input(double *a, double *b, double *c, int count_ans)
 
     printf("Square equation solver\n"
            "Misha Matvienko 2022, MIPT_SUMMER_SCHOOL\n");
-    printf("Введите через пробел коэффициенты а, b, c для уравнений вида a*x^2 + b*x + c = 0\n");
+    printf("Р’РІРµРґРёС‚Рµ С‡РµСЂРµР· РїСЂРѕР±РµР» РєРѕСЌС„С„РёС†РёРµРЅС‚С‹ Р°, b, c РґР»СЏ СѓСЂР°РІРЅРµРЅРёР№ РІРёРґР° a*x^2 + b*x + c = 0\n");
 
     ch_input = scanf("%lg %lg %lg", a, b, c);
 
@@ -32,7 +32,7 @@ void output(int count_ans, double *x1, double *x2)
     switch (count_ans)
     {
         case ZERO_ROOT:
-            printf("Корней нет\n");
+            printf("РљРѕСЂРЅРµР№ РЅРµС‚\n");
             break;
         case ONE_ROOT:
             printf("x = %.4lg\n", *x1);
@@ -41,10 +41,10 @@ void output(int count_ans, double *x1, double *x2)
             printf("x1 = %.4lg, x2 = %.4lg\n", *x1, *x2);
             break;
         case INFINITY_ROOT:
-            printf("Корнем ур-я является любое число\n");
+            printf("РљРѕСЂРЅРµРј СѓСЂ-СЏ СЏРІР»СЏРµС‚СЃСЏ Р»СЋР±РѕРµ С‡РёСЃР»Рѕ\n");
             break;
         default:
-            printf("Введён неверный формат данных\n");
+            printf("Р’РІРµРґС‘РЅ РЅРµРІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚ РґР°РЅРЅС‹С…\n");
             break;
     }
 }
