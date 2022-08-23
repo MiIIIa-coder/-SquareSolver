@@ -30,19 +30,19 @@ void output(int *count_ans, double *x1, double *x2)
     switch (*count_ans)
     {
         case ZERO:
-            printf("Êîðíåé íåò\n");
+            printf("Корней нет\n");
             break;
         case ONE:
-            printf("x = %.4lg\n", *x1); /*  âûâîäèò êîðåíü */
+            printf("x = %.4lg\n", *x1); /*  выводит корень */
             break;
         case TWO:
-            printf("x1 = %.4lg, x2 = %.4lg\n", *x1, *x2); /*  âûâîäèò êîðíè */
+            printf("x1 = %.4lg, x2 = %.4lg\n", *x1, *x2); /*  выводит корни */
             break;
         case INFINITY_:
-            printf("Êîðíåì óð-ÿ ÿâëÿåòñÿ ëþáîå ÷èñëî");
+            printf("Корнем ур-я является любое число");
             break;
         default:
-            printf("Ââåä¸í íåâåðíûé ôîðìàò äàííûõ\n");
+            printf("Введён неверный формат данных\n");
             break;
     }
 }
