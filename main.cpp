@@ -2,28 +2,20 @@
 
 int main()
 {
-    double x1 = 0, x2 = 0;
-    double a = 0, b = 0, c = 0;
+    double x1 = 0;
+    double x2 = 0;
+
+    double a = 0;
+    double b = 0;
+    double c = 0;
+
     int count_ans = -1;
 
-    printf("Square equation solver\n"
-            "Misha Matvienko 2022, MIPT_SUMMER_SCHOOL\n");
+    input(&a, &b, &c, count_ans);
 
-    input(&a, &b, &c, &count_ans);
+    solver(a, b, c, &count_ans, &x1, &x2);
 
-    if (comparing(a))
-        line(b, c, &x1, &count_ans);        //a == 0
-    else if (comparing(b) && c <= 0)
-        b_null(a, c, &x1, &x2, &count_ans); //b == 0
-    else if (comparing(c))
-        c_null(a, b, &x1, &x2, &count_ans); //c == 0
-    else
-        sqr_solve(a, b, c, &x1, &x2, &count_ans); //решение квадратного
-
-    output(&count_ans, &x1, &x2);
+    output(count_ans, &x1, &x2);
 
     return 0;
 }
-
-
-
