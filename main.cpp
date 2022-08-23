@@ -5,7 +5,7 @@ int main()
     double x1 = 0, x2 = 0;
     double a = 0, b = 0, c = 0;
     int count_ans = -1;
-    
+
     printf("Square equation solver\n"
             "Misha Matvienko 2022, MIPT_SUMMER_SCHOOL\n");
 
@@ -18,7 +18,7 @@ int main()
     else if (comparing(c))
         c_null(a, b, &x1, &x2, &count_ans); //c == 0
     else
-        sqr_solve(a, b, c, &x1, &x2, &count_ans); //ðåøåíèå êâàäðàòíîãî
+        sqr_solve(a, b, c, &x1, &x2, &count_ans); //решение квадратного
 
     output(&count_ans, &x1, &x2);
 
