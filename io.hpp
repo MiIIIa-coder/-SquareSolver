@@ -6,19 +6,65 @@
 #ifndef IO_HPP_INCLUDED
 #define IO_HPP_INCLUDED
 
+#include <string.h>
+#include <stdlib.h>
+
 /*!
   @brief function greetings user.
 */
 void greetings(void);
 
 /*!
-  @brief the function asks coefficients a, b, c. Until the correct format is entered, the function will call to the function 'output' to display a message about invalidity of the entered data.
+  @brief function gets test file.
+
+     @param [in] name_test_file  name_test_file - name of test file
+     @param [in] lim             lim            - name's of test file max length
+*/
+void get_name_test_file(char *name_test_file, int lim);
+
+/*!
+  @brief function сhecks the input for the presence of letters.
+
+     @param [in] name_test_file  name_test_file - name of test file
+
+*/
+bool checking(char line[]);
+
+/*!
+  @brief function gets entered coefficients.
+
+     @param [in] input_line[]      input_line[] - entered data
+     @param [in]  a                a            - coefficient x^2
+     @param [in]  b                b            - coefficient x^1
+     @param [in]  c                c            - coefficient x^0
+*/
+bool check_format(char input_line[], double *a, double *b, double *c);
+
+/*!
+  @brief function determines the number of coefficients entered.
+
+     @param [in] input_line[]  input_line[] - entered data
+
+*/
+bool check_count_coeff(char input_line[]);
+
+/*!
+  @brief function gets line.
+
+     @param [in] input_line[]  input_line[] - entered data
+     @param [in] lim           lim          - max length
+
+*/
+bool get_input(char input_line[], int lim);
+
+/*!
+  @brief function asks coefficients a, b, c. Until the correct format is entered, the function will call to the function 'output' to display a message about invalidity of the entered data.
      @param [in, out]  a           a - coefficient x^2
      @param [in, out]  b           b - coefficient x^1
      @param [in, out]  c           c - coefficient x^0
-     @param [in, out]  count_ans   count_ans - count of roots
+     //@param [in, out]  count_ans   count_ans - count of roots
 */
-void input(double *a, double *b, double *c, int count_ans);
+void input(double *a, double *b, double *c);
 
 /*!
   @brief function displays roots of the equation.
@@ -27,6 +73,5 @@ void input(double *a, double *b, double *c, int count_ans);
      @param [in]       count_ans   count_ans - count of roots
 */
 void output(int count_ans, double *x1, double *x2);
-
 
 #endif // IO_HPP_INCLUDED
