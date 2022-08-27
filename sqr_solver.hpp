@@ -1,5 +1,3 @@
-//split
-
 /*!
   @file sqr_solver.hpp
   @brief Functions for square solver.
@@ -20,13 +18,10 @@
         printf("Error in %s in line %d\n in function %s\n in file %s\n",       \
         #condition, __LINE__, __PRETTY_FUNCTION__, __FILE__); }                \
 
-
 /*!
   @brief lists constants numerically equal to the possible number of roots of the equation (here infinity = 3)
 */
 enum Amount_Root {
-
-
     ZERO_ROOT,
     ONE_ROOT,
     TWO_ROOT,
@@ -84,7 +79,5 @@ Amount_Root sqr_solve(double a, double b, double c, double *x1, double *x2);
      @param [in, out]  count_ans   count_ans - count of roots
 */
 void solver(double a, double b, double c, int *count_ans, double *x1, double *x2);
-
-
 
 #endif // SQR_SOLVER_H_INCLUDED
