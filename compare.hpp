@@ -1,29 +1,32 @@
 /*!
-  @file test_SqrEq.hpp
-  @brief Functions for test of program.
+  @file compare.hpp
+  @brief Functions for comparing.
 */
 
-#ifndef TEST_SQREQ_HPP_INCLUDED
-#define TEST_SQREQ_HPP_INCLUDED
+#ifndef COMPARE_HPP_INCLUDED
+#define COMPARE_HPP_INCLUDED
+
 
 /*!
-  @brief test - function.
+  @brief  the function compares received number with 0, returns true, if it equals 0, otherwise returns false.
+
+     @param [in] comp_digit    comp_digit - compared number
+
+  @return true
+  @return false
 */
-int test_SqrEq(void);
+bool is_null(double comp_digit);
 
 /*!
-  @brief function tests received roots.
+  @brief  the function compares received numbers, returns true, if they are equal, otherwise returns false.
 
-     @param [in]  a           a - coefficient x^2
-     @param [in]  b           b - coefficient x^1
-     @param [in]  c           c - coefficient x^0
-     @param [in]  x1          x1 - pointer to the first root
-     @param [in]  x2          x2 - pointer to the second root
-     @param [in]  count_ans   count_ans - count of roots
-     @param [in]  right_count right_count - number of roots from file
-     @param [in]  root1       root1 - first root from file
-     @param [in]  root2       root2 - second root from file
+     @param [in] n1    n1 - compared number
+     @param [in] n2    n2 - compared number
+
+  @return true
+  @return false
 */
-void test_compare(double a, double b, double c, int count_ans, double x1, double x2, int right_count, double root1, double root2);
+bool is_equal(double n1, double n2);
 
-#endif // TEST_SQREQ_HPP_INCLUDED
+
+#endif // COMPARE_HPP_INCLUDED
