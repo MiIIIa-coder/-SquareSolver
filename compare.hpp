@@ -8,7 +8,8 @@
 
 
 /*!
-  @brief  the function compares received number with 0, returns true, if it equals 0, otherwise returns false.
+  @brief  the function compares received number with 0, returns true,
+          if it equals 0, otherwise returns false.
 
      @param [in] comp_digit    comp_digit - compared number
 
@@ -18,7 +19,8 @@
 bool is_null(double comp_digit);
 
 /*!
-  @brief  the function compares received numbers, returns true, if they are equal, otherwise returns false.
+  @brief  the function compares received numbers, returns true, if they are equal,
+          otherwise returns false.
 
      @param [in] n1    n1 - compared number
      @param [in] n2    n2 - compared number
