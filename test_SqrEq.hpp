@@ -24,6 +24,8 @@ int test_SqrEq(void);
      @param [in]  root1       root1 - first root from file
      @param [in]  root2       root2 - second root from file
 */
-void test_compare(double a, double b, double c, int count_ans, double x1, double x2, int right_count, double root1, double root2);
+void test_compare(double a, double b, double c,
+                 int count_ans, double x1, double x2,
+                 int right_count, double root1, double root2);
 
 #endif // TEST_SQREQ_HPP_INCLUDED
