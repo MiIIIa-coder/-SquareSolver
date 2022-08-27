@@ -58,7 +58,10 @@ bool check_count_coeff(char input_line[]);
 bool get_input(char input_line[], int lim);
 
 /*!
-  @brief function asks coefficients a, b, c. Until the correct format is entered, the function will call to the function 'output' to display a message about invalidity of the entered data.
+  @brief function asks coefficients a, b, c. Until the correct format is entered,
+         the function will call to the function 'output' to display a message
+         about invalidity of the entered data.
+     
      @param [in, out]  a           a - coefficient x^2
      @param [in, out]  b           b - coefficient x^1
      @param [in, out]  c           c - coefficient x^0
