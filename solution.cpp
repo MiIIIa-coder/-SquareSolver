@@ -8,9 +8,9 @@
 
 void solver(double a, double b, double c, int *count_ans, double *x1, double *x2)
 {
-    ASSERT(x1 != 0);
-    ASSERT(x2 != 0);
-    ASSERT(count_ans != 0);
+    ASSERT(x1 != NULL);
+    ASSERT(x2 != NULL);
+    ASSERT(count_ans != NULL);
     ASSERT(a != INFINITY);
     ASSERT(b != INFINITY);
     ASSERT(c != INFINITY);
@@ -28,8 +28,8 @@ void solver(double a, double b, double c, int *count_ans, double *x1, double *x2
 Amount_Root line_equation(double b, double c, double *x1)
 {
     ASSERT(x1 != NULL);
-    ASSERT(b != INFINITY);
-    ASSERT(c != INFINITY);
+    ASSERT(b  != INFINITY);
+    ASSERT(c  != INFINITY);
 
     if (is_null(b) && is_null(c))    // all zeros
         return INFINITY_ROOT;
@@ -57,11 +57,11 @@ Amount_Root b_null(double a, double c, double *x1, double *x2)
         return ONE_ROOT;
     }
     else {
-    root = sqrt(-c/a);
-    *x1 = root;
-    *x2 = (-1)*root;
+        root = sqrt(-c/a);
+        *x1 = root;
+        *x2 = (-1)*root;
 
-    return TWO_ROOT;
+        return TWO_ROOT;
     }
 }
 
@@ -88,18 +88,18 @@ Amount_Root sqr_solve(double a, double b, double c, double *x1, double *x2)
     ASSERT(b != INFINITY);
     ASSERT(c != INFINITY);
 
-    double D = 0, sqrt_D = 0, a_2 = 0;
+    double discr = 0, sqrt_discr = 0, a_2 = 0;
 
-    D = b*b - 4*a*c;  // discriminant
+    discr = b*b - 4*a*c;
     a_2 = 2 * a;
 
-    if (D > 0) {
-        sqrt_D = sqrt(D);
-        *x1 = (-b + sqrt_D)/a_2;
-        *x2 = (-b - sqrt_D)/a_2;
+    if (discr > 0) {
+        sqrt_discr = sqrt(discr);
+        *x1 = (-b + sqrt_discr)/a_2;
+        *x2 = (-b - sqrt_discr)/a_2;
         return TWO_ROOT;
     }
-    else if (is_null(D)) {
+    else if (is_null(discr)) {
         *x1 = -b/a_2;
         return ONE_ROOT;
     }
