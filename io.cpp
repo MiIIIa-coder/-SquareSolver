@@ -5,33 +5,106 @@
 
 #include "sqr_solver.hpp"
 #include "io.hpp"
+#include "compare.hpp"
+
+#define MAX_LEN 100
 
 void greetings(void)
 {
-    printf("Square equation solver\n"
+    printf("Square equation solver!\n"
            "Misha Matvienko 2022, MIPT_SUMMER_SCHOOL\n");
     printf("Select the program operation mode:\n"
-           "\"t\" - test   mode \n"
-           "\"m\" - manual mode \n"
+           "\"t\" - test   mode  \n"
+           "\"m\" - manual mode  \n"
            "\"c\" - close program\n");
 }
 
-void input(double *a, double *b, double *c, int count_ans)
+void get_name_test_file(char name_test_file[], int lim)
 {
-    ASSERT(a != 0);
-    ASSERT(b != 0);
-    ASSERT(c != 0);
+    int i;
+    int c;
 
-    int ch_input = 0;
+    printf("Enter the name of the test file\n");
+  
+    for(i = 0; i < (lim - 1) && (c = getchar()) != EOF && c != '\n';) {
+        name_test_file[i++] = (char)c;
+    }
+    name_test_file[i] = '\0';
+}
 
-    printf("Enter the coefficients a, b, c separated by a space for equations of the form a*x^2 + b*x + c = 0\n");
+bool get_input(char input_line[], int lim)
+{
+    int i;
+    int c;
+    for(i = 0; i < (lim - 1) && (c = getchar()) != EOF && c != '\n';) {
+        input_line[i++] = (char)c;
+    }
 
-    ch_input = scanf("%lg %lg %lg", a, b, c);
+    if (i == lim - 1)
+        return false;
 
-    while (ch_input != 3) {
-        while (getchar() != '\n') {}
-        output(count_ans, a, b);
-        ch_input = scanf("%lg %lg %lg", a, b, c);
+    if (c == '\n')
+        input_line[i++] = (char)c;
+    input_line[i] = '\0';
+
+    return true;
+}
+
+bool checking(char line[])
+{
+    unsigned int i = 0;
+    for (i = 0; isspace(line[i]) || isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'; ++i)
+        {}
+    return not(i < (strlen(line) - 1));
+}
+
+bool check_format(char line[], double *a, double *b, double *c)
+{
+    if (sscanf(line, "%lg %lg %lg", a, b, c) == 3)
+        return true;
+    return false;
+}
+
+bool check_count_coeff(char input_line[])
+{
+    char* nstr = input_line;
+    char* tstr;
+
+    int count_coeff = 0;
+
+    double d = 0;
+
+    while(1) {
+        tstr = nstr;
+        d = strtod(nstr, &nstr);
+        if (is_null(d) && tstr==nstr) break;
+        ++count_coeff;
+        if (count_coeff > 3)
+            return false;
+    }
+
+    return true;
+}
+
+void input(double *a, double *b, double *c)
+{
+    ASSERT(a != NULL);
+    ASSERT(b != NULL);
+    ASSERT(c != NULL);
+
+    printf("Enter the coefficients a, b, c separated by a space "
+           "for equations of the form a*x^2 + b*x + c = 0\n");
+
+    char input_line[MAX_LEN];
+
+    get_input(input_line, MAX_LEN);
+
+    while (!((checking(input_line)) && check_format(input_line, a, b, c) && check_count_coeff(input_line))) {
+        printf("Wrong data format entered!!\n");
+        while (!(get_input(input_line, MAX_LEN))) {
+            printf("Too long! Try again.\n");
+            while (getchar() != '\n') {}
+        }
     }
 }
 
@@ -56,7 +129,7 @@ void output(int count_ans, double *x1, double *x2)
             printf("The root of the equation is any number\n");
             break;
         default:
-            printf("Wrong data format entered!\n");
+            printf("Wrong data format entered!!\n");
             break;
     }
 }
