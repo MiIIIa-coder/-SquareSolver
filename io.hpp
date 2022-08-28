@@ -20,7 +20,7 @@ void greetings(void);
      @param [in] name_test_file  name_test_file - name of test file
      @param [in] lim             lim            - name's of test file max length
 */
-void get_name_test_file(char *name_test_file, int lim);
+bool get_name_test_file(char *name_test_file, int lim);
 
 /*!
   @brief function сhecks the input for the presence of letters.
@@ -49,6 +49,16 @@ bool check_format(char input_line[], double *a, double *b, double *c);
 bool check_count_coeff(char input_line[]);
 
 /*!
+  @brief function determines selected mod of program.
+
+     @param [in] c                  c                 - symbol of mod
+     @param [in] input_line[]       input_line[]      - entered data
+     @param [in] len_of_input_line  len_of_input_line - length of entered data
+
+*/
+bool check_selected_mod(char c, char input_line[], int len_of_input_line);
+
+/*!
   @brief function gets line.
 
      @param [in] input_line[]  input_line[] - entered data
@@ -61,7 +71,7 @@ bool get_input(char input_line[], int lim);
   @brief function asks coefficients a, b, c. Until the correct format is entered,
          the function will call to the function 'output' to display a message
          about invalidity of the entered data.
-     
+
      @param [in, out]  a           a - coefficient x^2
      @param [in, out]  b           b - coefficient x^1
      @param [in, out]  c           c - coefficient x^0
