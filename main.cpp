@@ -20,7 +20,9 @@ int main()
     double b = 0;
     double c = 0;
 
-    char input_line[MAX_LEN];
+    int len_of_input_line = 0;
+
+    char input_line[MAX_LEN] = {};
 
     int count_ans = -1;
 
@@ -35,21 +37,23 @@ int main()
             while (getchar() != '\n') {}
         }
 
-        if (input_line[0] == 'm' && input_line[1] == '\n') {
+        len_of_input_line = strlen(input_line);
+
+        if (check_selected_mod('m', input_line, len_of_input_line)) {
             input(&a, &b, &c);
             solver(a, b, c, &count_ans, &x1, &x2);
             output(count_ans, &x1, &x2);
             check = true;
         }
 
-        else if (input_line[0] == 't' && input_line[1] == '\n') {
+        else if (check_selected_mod('t', input_line, len_of_input_line)) {
             if(test_SqrEq()) {
                 printf("Test aborted!!!\n");
                 return 1;
             }
             check = true;
         }
-        else if (input_line[0] == 'c' && input_line[1] == '\n') {
+        else if (check_selected_mod('c', input_line, len_of_input_line)) {
             check = true;
         }
 
@@ -61,5 +65,4 @@ int main()
 
     return 0;
 }
-
 
