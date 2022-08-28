@@ -19,23 +19,38 @@ void greetings(void)
            "\"c\" - close program\n");
 }
 
-void get_name_test_file(char name_test_file[], int lim)
+bool get_name_test_file(char name_test_file[], int lim)
 {
-    int i;
-    int c;
+    int i = 0;
+    int c = 0;
 
     printf("Enter the name of the test file\n");
-  
-    for(i = 0; i < (lim - 1) && (c = getchar()) != EOF && c != '\n';) {
+
+    for (i = 0; isspace(c = getchar()); ++i)
+        {}
+
+    name_test_file[0] = (char)c;
+
+    for(i = 1; i < (lim - 1) && (c = getchar()) != EOF && c != '\n';) {
+        if (isspace(c))
+            break;
         name_test_file[i++] = (char)c;
     }
     name_test_file[i] = '\0';
+
+    if (i == lim - 1) {
+        printf("Too long!\n");
+        return false;
+    }
+
+    return true;
 }
 
 bool get_input(char input_line[], int lim)
 {
-    int i;
-    int c;
+    int i = 0;
+    int c = 0;
+
     for(i = 0; i < (lim - 1) && (c = getchar()) != EOF && c != '\n';) {
         input_line[i++] = (char)c;
     }
@@ -58,9 +73,26 @@ bool checking(char line[])
     return not(i < (strlen(line) - 1));
 }
 
-bool check_format(char line[], double *a, double *b, double *c)
+bool check_selected_mod(char choice, char input_line[], int len_of_input_line)
 {
-    if (sscanf(line, "%lg %lg %lg", a, b, c) == 3)
+    int i = 0;
+
+    for (i = 0; isspace(input_line[i]); i++)
+        {}
+
+    if (input_line[i++] == choice) {
+        for (; isspace(input_line[i]) && i < len_of_input_line; i++)
+            {}
+        if (i == len_of_input_line)
+            return true;
+    }
+
+    return false;
+}
+
+bool check_format(char input_line[], double *a, double *b, double *c)
+{
+    if (sscanf(input_line, "%lg %lg %lg", a, b, c) == 3)
         return true;
     return false;
 }
