@@ -2,7 +2,7 @@
 
 This program solves square equation.
 
-Нou can download files from this repository, put them in one file and compile them using the "make" function on the cmd.
+You can download files from this repository, put them in one file and compile them using the "make" function on the cmd.
 
 User can choose the operating mode of the program or close it.
 
