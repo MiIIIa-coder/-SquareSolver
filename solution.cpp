@@ -6,26 +6,26 @@
 #include "sqr_solver.hpp"
 #include "compare.hpp"
 
-void solver(double a, double b, double c, int *count_ans, double *x1, double *x2)
+void solve(double a, double b, double c, int *n_roots, double *x1, double *x2)
 {
     ASSERT(x1 != NULL);
     ASSERT(x2 != NULL);
-    ASSERT(count_ans != NULL);
+    ASSERT(n_roots != NULL);
     ASSERT(a != INFINITY);
     ASSERT(b != INFINITY);
     ASSERT(c != INFINITY);
 
     if (is_null(a))
-        *count_ans = line_equation(b, c, x1);    // a == 0
+        *n_roots = solve_linear_equation(b, c, x1);    // a == 0
     else if (is_null(b) && c <= 0)
-        *count_ans = b_null(a, c, x1, x2);       // b == 0
+        *n_roots = solve_b_null(a, c, x1, x2);         // b == 0
     else if (is_null(c))
-        *count_ans = c_null(a, b, x1, x2);       // c == 0
+        *n_roots = solve_c_null(a, b, x1, x2);         // c == 0
     else
-        *count_ans = sqr_solve(a, b, c, x1, x2); // solving sqr equation
+        *n_roots = solve_sqr(a, b, c, x1, x2);         // solves sqr equation
 }
 
-Amount_Root line_equation(double b, double c, double *x1)
+Amount_Root solve_linear_equation(double b, double c, double *x1)
 {
     ASSERT(x1 != NULL);
     ASSERT(b  != INFINITY);
@@ -42,10 +42,8 @@ Amount_Root line_equation(double b, double c, double *x1)
     return ZERO_ROOT;
 }
 
-Amount_Root b_null(double a, double c, double *x1, double *x2)
+Amount_Root solve_b_null(double a, double c, double *x1, double *x2)
 {
-    double root = 0;
-
     ASSERT(x1 != NULL);
     ASSERT(x2 != NULL);
     ASSERT(x1 != x2);
@@ -57,15 +55,15 @@ Amount_Root b_null(double a, double c, double *x1, double *x2)
         return ONE_ROOT;
     }
     else {
-        root = sqrt(-c/a);
-        *x1 = root;
-        *x2 = (-1)*root;
+        double root = sqrt(-c/a);
+        *x1 =  root;
+        *x2 = -root;
 
         return TWO_ROOT;
     }
 }
 
-Amount_Root c_null(double a, double b, double *x1, double *x2)
+Amount_Root solve_c_null(double a, double b, double *x1, double *x2)
 {
     ASSERT(x1 != NULL);
     ASSERT(x2 != NULL);
@@ -74,35 +72,33 @@ Amount_Root c_null(double a, double b, double *x1, double *x2)
     ASSERT(b != INFINITY);
 
     *x1 = 0;
-    *x2 = (-1)*b/a;
+    *x2 = -b/a;
 
     return TWO_ROOT;
 }
 
-Amount_Root sqr_solve(double a, double b, double c, double *x1, double *x2)
+Amount_Root solve_sqr(double a, double b, double c, double *x1, double *x2)
 {
     ASSERT(x1 != NULL);
     ASSERT(x2 != NULL);
     ASSERT(x1 != x2);
-    ASSERT(a != INFINITY);
-    ASSERT(b != INFINITY);
-    ASSERT(c != INFINITY);
+    ASSERT(a  != INFINITY);
+    ASSERT(b  != INFINITY);
+    ASSERT(c  != INFINITY);
 
-    double discr = 0, sqrt_discr = 0, a_2 = 0;
-
-    discr = b*b - 4*a*c;
-    a_2 = 2 * a;
+    double discr = b*b - 4*a*c;
 
     if (discr > 0) {
-        sqrt_discr = sqrt(discr);
-        *x1 = (-b + sqrt_discr)/a_2;
-        *x2 = (-b - sqrt_discr)/a_2;
+        double sqrt_discr = sqrt(discr);
+        *x1 = (-b + sqrt_discr)/(2*a);
+        *x2 = (-b - sqrt_discr)/(2*a);
         return TWO_ROOT;
     }
     else if (is_null(discr)) {
-        *x1 = -b/a_2;
+        *x1 = -b/(2*a);
         return ONE_ROOT;
     }
-    return ZERO_ROOT; // D < 0
+
+    return ZERO_ROOT; // discriminant < 0
 }
 
