@@ -8,11 +8,10 @@
 #include "test_SqrEq.hpp"
 #include "choice_selection.hpp"
 
-#define MAX_LEN 100
-
-
 int main()
 {
+    const int MAX_LEN = 100;
+
     double x1 = 0;
     double x2 = 0;
 
@@ -20,45 +19,43 @@ int main()
     double b = 0;
     double c = 0;
 
-    int len_of_input_line = 0;
+    int n_roots = 0;
 
+    int  input_len = 0;
     char input_line[MAX_LEN] = {};
 
-    int count_ans = -1;
+    show_greetings();
 
-    static bool check = false;
+    char mode = 0;
 
-    greetings();
-
-    while (!check) {
+    while (!mode) {
 
         while (!(get_input(input_line, MAX_LEN))) {
             printf("Too long! Try again.\n");
-            while (getchar() != '\n') {}
+            while (getchar() != '\n')
+                {}
         }
 
-        len_of_input_line = strlen(input_line);
+        input_len = strlen(input_line);
 
-        if (check_selected_mod('m', input_line, len_of_input_line)) {
-            input(&a, &b, &c);
-            solver(a, b, c, &count_ans, &x1, &x2);
-            output(count_ans, &x1, &x2);
-            check = true;
-        }
+        mode = check_selected_mode(input_line, input_len);
 
-        else if (check_selected_mod('t', input_line, len_of_input_line)) {
-            if(test_SqrEq()) {
-                printf("Test aborted!!!\n");
-                return 1;
-            }
-            check = true;
-        }
-        else if (check_selected_mod('c', input_line, len_of_input_line)) {
-            check = true;
-        }
-
-        else {
-            printf("Wrong data format entered!\n");
+        switch (mode)
+        {
+            case 'm':
+                input(&a, &b, &c);
+                solve(a, b, c, &n_roots, &x1, &x2);
+                output(n_roots, &x1, &x2);
+                break;
+            case 't':
+                if(test_sqr_eq())
+                    printf("Test aborted!!!\n");
+                break;
+            case 'c':
+                break;
+            default:
+                printf("Wrong data format entered!\n");
+                break;
         }
 
     }
