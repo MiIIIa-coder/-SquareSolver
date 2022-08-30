@@ -9,7 +9,7 @@
 /*!
   @brief test - function.
 */
-int test_SqrEq(void);
+int test_sqr_eq(void);
 
 /*!
   @brief function tests received roots.
@@ -19,13 +19,13 @@ int test_SqrEq(void);
      @param [in]  c           c - coefficient x^0
      @param [in]  x1          x1 - pointer to the first root
      @param [in]  x2          x2 - pointer to the second root
-     @param [in]  count_ans   count_ans - count of roots
+     @param [in]  n_roots     n_roots - count of roots
      @param [in]  right_count right_count - number of roots from file
      @param [in]  root1       root1 - first root from file
      @param [in]  root2       root2 - second root from file
 */
 void test_compare(double a, double b, double c,
-                 int count_ans, double x1, double x2,
+                 int n_roots, double x1, double x2,
                  int right_count, double root1, double root2);
 
 #endif // TEST_SQREQ_HPP_INCLUDED
