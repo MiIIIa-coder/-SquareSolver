@@ -12,7 +12,7 @@
 /*!
   @brief function greetings user.
 */
-void greetings(void);
+void show_greetings(void);
 
 /*!
   @brief function gets test file.
@@ -20,12 +20,12 @@ void greetings(void);
      @param [in] name_test_file  name_test_file - name of test file
      @param [in] lim             lim            - name's of test file max length
 */
-bool get_name_test_file(char *name_test_file, int lim);
+bool get_test_file_name(char *test_file_name, int lim);
 
 /*!
   @brief function сhecks the input for the presence of letters.
 
-     @param [in] name_test_file  name_test_file - name of test file
+     @param [in] test_file_name  test_file_name - name of test file
 
 */
 bool checking(char line[]);
@@ -51,12 +51,12 @@ bool check_count_coeff(char input_line[]);
 /*!
   @brief function determines selected mod of program.
 
-     @param [in] c                  c                 - symbol of mod
-     @param [in] input_line[]       input_line[]      - entered data
-     @param [in] len_of_input_line  len_of_input_line - length of entered data
+     @param [in] c                 c                 - symbol of mod
+     @param [in] input_line[]      input_line[]      - entered data
+     @param [in] input_len         input_len - length of entered data
 
 */
-bool check_selected_mod(char c, char input_line[], int len_of_input_line);
+char check_selected_mode(char input_line[], int input_len);
 
 /*!
   @brief function gets line.
@@ -85,6 +85,6 @@ void input(double *a, double *b, double *c);
      @param [in, out]  x2          x2 - pointer to the second root
      @param [in]       count_ans   count_ans - count of roots
 */
-void output(int count_ans, double *x1, double *x2);
+void output(int n_roots, double *x1, double *x2);
 
 #endif // IO_HPP_INCLUDED
